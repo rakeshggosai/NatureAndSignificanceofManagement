@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>સંચાલન સાથી - Nature & Significance of Management</title>
+  
+  <!-- PWA Manifest & Meta Tags -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0d0e15">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+
+  <!-- Google Fonts for Premium Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Gujarati:wght@300;400;600;700&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Shell Header -->
+  <header class="app-header">
+    <div class="header-logo">
+      <svg class="logo-icon" viewBox="0 0 24 24" width="28" height="28">
+        <path fill="url(#neon-grad)" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <defs>
+          <linearGradient id="neon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00f2fe" />
+            <stop offset="100%" stop-color="#4facfe" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <h1>સંચાલન સાથી</h1>
+    </div>
+    
+    <!-- Audio Narration Controls -->
+    <button id="audio-panel-toggle" class="btn-icon" aria-label="Audio Controls">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path fill="currentColor" d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- PWA Install Banner Overlay -->
+  <div id="install-banner" class="install-banner hidden">
+    <div class="banner-content">
+      <p>ઑફલાઇન ભણવા માટે એપ્લિકેશન ઇન્સ્ટોલ કરો!</p>
+      <div class="banner-actions">
+        <button id="btn-install" class="btn btn-primary btn-sm">ઇન્સ્ટોલ કરો</button>
+        <button id="btn-close-banner" class="btn btn-secondary btn-sm">બંધ કરો</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Narration Panel Overlay -->
+  <div id="audio-settings-panel" class="audio-panel glass hidden">
+    <div class="panel-header">
+      <h3>ઓડિયો વાચક સેટિંગ્સ</h3>
+      <button id="audio-panel-close" class="btn-close">&times;</button>
+    </div>
+    <div class="panel-body">
+      <div class="setting-item">
+        <label for="voice-select">અવાજ પસંદ કરો:</label>
+        <select id="voice-select" class="glass-input"></select>
+      </div>
+      <div class="setting-item">
+        <label for="voice-speed">વાંચનની ઝડપ: <span id="speed-val">1x</span></label>
+        <input type="range" id="voice-speed" min="0.5" max="2" step="0.1" value="1">
+      </div>
+      <div class="setting-item toggle-item">
+        <label for="voice-mute">અવાજ બંધ (Mute):</label>
+        <input type="checkbox" id="voice-mute">
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Subtitles Dynamic Bar -->
+  <div id="subtitles-container" class="subtitles-bar glass hidden">
+    <p id="subtitles-text">અહીં નરેશન ચાલુ થશે...</p>
+  </div>
+
+  <!-- Main View Screens Container -->
+  <main class="app-main">
+    
+    <!-- View 1: Dashboard (મુખ્ય પાનું) -->
+    <section id="view-dashboard" class="app-view active">
+      <div class="hero-card glass">
+        <h2 class="neon-text">ધોરણ 12: પ્રકરણ ૧</h2>
+        <h3>સંચાલનનું સ્વરૂપ અને મહત્વ</h3>
+        <p>રોજિંદા જીવનની રસપ્રદ વાર્તાઓ અને રમતો સાથે બોર્ડ એક્ઝામની તૈયારી કરો!</p>
+        <button onclick="switchView('view-tree')" class="btn btn-neon">ભણવાનું શરૂ કરો</button>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card glass">
+          <div class="stat-icon pink-glow">📊</div>
+          <div class="stat-info">
+            <span id="score-tree-progress">૦%</span>
+            <label>જ્ઞાન વૃક્ષ પ્રગતિ</label>
+          </div>
+        </div>
+        <div class="stat-card glass">
+          <div class="stat-icon cyan-glow">🏆</div>
+          <div class="stat-info">
+            <span id="high-score-val">૦/૨૫</span>
+            <label>બેસ્ટ સ્કોર</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-sections">
+        <h4 class="section-title">મુખ્ય વિભાગો</h4>
+        <div class="menu-list">
+          <div class="menu-item glass" onclick="switchView('view-tree')">
+            <div class="menu-text">
+              <h5>૧. જ્ઞાન વૃક્ષ (Knowledge Tree)</h5>
+              <p>૧ થી ૧૨ પાનાના બધા વિષયો પાણીપુરીની લારી અને રોડ ટ્રીપ દ્વારા શીખો!</p>
+            </div>
+            <span class="arrow">➔</span>
+          </div>
+
+          <div class="menu-item glass" onclick="switchView('view-games')">
+            <div class="menu-text">
+              <h5>૨. શૈક્ષણિક રમતો (Minigames)</h5>
+              <p>પાણીપુરી વેચો અને સમયસર આપત્તિઓ મેનેજ કરવાનું શીખો!</p>
+            </div>
+            <span class="arrow">➔</span>
+          </div>
+
+          <div class="menu-item glass" onclick="switchView('view-assessment')">
+            <div class="menu-text">
+              <h5>૩. ૨૫-માર્ક્સનું મૂલ્યાંકન (Assessment)</h5>
+              <p>સ્વાઇપ કરો, ડ્રેગ એન્ડ ડ્રોપ કરો અને પિરામિડ ગોઠવી પરીક્ષા આપો!</p>
+            </div>
+            <span class="arrow">➔</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View 2: Knowledge Tree (શિક્ષણ વૃક્ષ) -->
+    <section id="view-tree" class="app-view">
+      <div class="view-header">
+        <h2>જ્ઞાન વૃક્ષ (Knowledge Tree)</h2>
+        <p>કોઈપણ ટોપિક પર ક્લિક કરીને વાર્તા સાંભળો અને વ્યાખ્યા શીખો</p>
+      </div>
+      
+      <!-- Interactive Grid Map of Nodes -->
+      <div class="tree-container">
+        <div class="tree-grid" id="knowledge-tree-grid">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+
+      <!-- Node Detail Detail Modal Overlay -->
+      <div id="node-modal" class="modal glass hidden">
+        <div class="modal-content glass">
+          <button id="modal-close" class="btn-close">&times;</button>
+          <div class="modal-body">
+            <div id="modal-analogy-icon" class="analogy-avatar"></div>
+            <h2 id="modal-node-title" class="neon-text-cyan">ટોપિક શીર્ષક</h2>
+            <div class="badge-container">
+              <span class="badge" id="modal-node-topic">ટોપિક ક્રમ</span>
+            </div>
+            
+            <div class="modal-tab-container">
+              <div class="tab-content active" id="tab-analogy">
+                <h4>સરળ વ્યવહારુ ઉદાહરણ (વાર્તા):</h4>
+                <p id="modal-analogy-text" class="text-analogy">ઉદાહરણ લોડ થઈ રહ્યું છે...</p>
+              </div>
+              <div class="tab-content" id="tab-academic">
+                <h4>પુસ્તકની વ્યાખ્યા / મુખ્ય મુદ્દાઓ:</h4>
+                <p id="modal-definition-text" class="text-academic">વ્યાખ્યા લોડ થઈ રહી છે...</p>
+              </div>
+            </div>
+
+            <div class="modal-actions">
+              <button id="btn-speak-node" class="btn btn-neon">🔊 વાર્તા સાંભળો</button>
+              <button id="btn-next-node" class="btn btn-secondary">આગળ વધો ➔</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View 3: Minigames (રમતો) -->
+    <section id="view-games" class="app-view">
+      <div class="view-header">
+        <h2>મેનેજમેન્ટ રમતો</h2>
+        <p>મનોરંજક રમતો રમીને સંચાલકીય અનુભવ મેળવો</p>
+      </div>
+
+      <div class="games-selector" id="games-selection-screen">
+        <div class="game-card glass" onclick="startStreetFoodGame()">
+          <div class="game-visual text-glow-cyan">🍲</div>
+          <h3>પાણીપુરી ટાયકૂન</h3>
+          <p>આયોજન, સ્ટાફિંગ અને અંકુશ દ્વારા લારી ચલાવો અને નફો કરો!</p>
+          <button class="btn btn-neon btn-sm">રમો</button>
+        </div>
+
+        <div class="game-card glass" onclick="startCrisisSorterGame()">
+          <div class="game-visual text-glow-pink">⚠️</div>
+          <h3>આફત વ્યવસ્થાપક</h3>
+          <p>પડતી આપત્તિઓને તેમના સાચા સંચાલકીય વિભાગોમાં સ્વાઇપ કરો!</p>
+          <button class="btn btn-neon btn-sm">રમો</button>
+        </div>
+      </div>
+
+      <!-- Game Container 1: Street Food Tycoon (Canvas) -->
+      <div id="game-street-food-container" class="game-active-container hidden">
+        <div class="game-bar glass">
+          <button onclick="exitGames()" class="btn btn-secondary btn-sm">◀ બહાર નીકળો</button>
+          <span class="game-title">પાણીપુરી ટાયકૂન</span>
+          <span id="food-game-score" class="game-badge">બજેટ: ₹૧૦૦૦</span>
+        </div>
+        <div class="canvas-wrapper">
+          <canvas id="street-food-canvas" width="360" height="420"></canvas>
+        </div>
+        <div id="street-food-controls" class="game-control-buttons">
+          <button id="btn-plan-stock" class="btn btn-neon btn-sm">📋 સ્ટોક ખરીદો (આયોજન)</button>
+          <button id="btn-staff-hire" class="btn btn-neon btn-sm">🧑‍🍳 સ્ટાફ રાખો (કર્મચારી)</button>
+          <button id="btn-control-adjust" class="btn btn-neon btn-sm">⚙️ ભાવ/ગુણવત્તા (અંકુશ)</button>
+        </div>
+        <!-- Modal for controlling adjustments -->
+        <div id="control-settings-modal" class="modal glass hidden">
+          <div class="modal-content glass">
+            <h3>અંકુશ અને વ્યવસ્થાપન</h3>
+            <p>ગ્રાહકોને સંતોષ આપવા માટે ભાવ અને ગુણવત્તા સેટ કરો:</p>
+            <div class="setting-item">
+              <label for="stall-price">એક પ્લેટના ભાવ: <span id="price-val">₹૨૦</span></label>
+              <input type="range" id="stall-price" min="10" max="50" step="5" value="20">
+            </div>
+            <div class="setting-item">
+              <label for="stall-quality">મસાલાની ગુણવત્તા:</label>
+              <select id="stall-quality" class="glass-input">
+                <option value="high">ઉચ્ચ (સારી પ્રતિષ્ઠા, મોંઘી)</option>
+                <option value="medium" selected>મધ્યમ (સામાન્ય)</option>
+                <option value="low">નિમ્ન (નફો વધુ, લોકો બીમાર પડી શકે)</option>
+              </select>
+            </div>
+            <button id="btn-close-control-modal" class="btn btn-primary btn-sm">લાગુ કરો</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Game Container 2: Crisis Sorter (DOM Swipe) -->
+      <div id="game-crisis-container" class="game-active-container hidden">
+        <div class="game-bar glass">
+          <button onclick="exitGames()" class="btn btn-secondary btn-sm">◀ બહાર નીકળો</button>
+          <span class="game-title">આફત વ્યવસ્થાપક</span>
+          <span id="crisis-score" class="game-badge">સ્કોર: ૦</span>
+        </div>
+        <div id="crisis-playfield" class="playfield-area">
+          <div class="instructions-overlay">
+            આવતી આપત્તિને નીચે દર્શાવેલા યોગ્ય વિભાગના ખાનામાં ખેંચીને (Swipe) મૂકો!
+          </div>
+          <!-- Bubbles fall here -->
+        </div>
+        <div class="crisis-bins">
+          <div id="bin-production" class="crisis-bin glass" data-bin="production">
+            <span>ઉત્પાદન</span>
+          </div>
+          <div id="bin-finance" class="crisis-bin glass" data-bin="finance">
+            <span>નાણાકીય</span>
+          </div>
+          <div id="bin-hr" class="crisis-bin glass" data-bin="hr">
+            <span>કર્મચારી</span>
+          </div>
+          <div id="bin-marketing" class="crisis-bin glass" data-bin="marketing">
+            <span>માર્કેટિંગ</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- View 4: Assessment (મૂલ્યાંકન) -->
+    <section id="view-assessment" class="app-view">
+      <div class="view-header">
+        <h2>૨૫-માર્ક્સનું મૂલ્યાંકન</h2>
+        <p>તમારી સંચાલન કુશળતાની કસોટી કરો (૩ મિનિટ સમય મર્યાદા)</p>
+      </div>
+
+      <!-- Screen A: Intro/Start -->
+      <div id="assess-intro-screen" class="assess-screen glass">
+        <div class="badge-badge">🏆 પરીક્ષા નિયમો</div>
+        <h3>કુલ માર્ક્સ: ૨૫</h3>
+        <ul>
+          <li><strong>તબક્કો ૧ (૫ માર્ક્સ)</strong>: સ્વાઇપ ટિન્ડર કાર્ડ (સાચું/ખોટું)</li>
+          <li><strong>તબક્કો ૨ (૫ માર્ક્સ)</strong>: કાર્યો ગોઠવો (આયોજન, વ્યવસ્થાતંત્ર, વગેરે)</li>
+          <li><strong>તબક્કો ૩ (૫ માર્ક્સ)</strong>: સંચાલનની સપાટીઓનો પિરામિડ સેટ કરો</li>
+          <li><strong>તબક્કો ૪ (૧૦ માર્ક્સ)</strong>: વ્યવહારુ કેસ સ્ટડીઝ પરથી સાચો વિકલ્પ પસંદ કરો</li>
+        </ul>
+        <button id="btn-start-assess" class="btn btn-neon">પરીક્ષા શરૂ કરો</button>
+      </div>
+
+      <!-- Screen B: Active Quiz Test Sheet -->
+      <div id="assess-active-screen" class="assess-screen hidden">
+        <div class="assess-header glass">
+          <span id="assess-timer" class="neon-text-pink">સમય: ૦૩:૦૦</span>
+          <span id="assess-progress" class="game-badge">તબક્કો ૧/૪</span>
+        </div>
+
+        <!-- Dynamic Container for current phase -->
+        <div id="assess-phase-container" class="phase-workspace">
+          
+          <!-- Phase 1: Swipe Tinder Workspace -->
+          <div id="phase-swipe-workspace" class="phase-area hidden">
+            <div id="tinder-card-container" class="tinder-card-box">
+              <!-- Card injected dynamically -->
+            </div>
+            <div class="swipe-hints">
+              <span class="hint-left">◀ ખોટું (Left)</span>
+              <span class="hint-right">સાચું (Right) ▶</span>
+            </div>
+          </div>
+
+          <!-- Phase 2: Drag/Drop POSDC Workspace -->
+          <div id="phase-drag-workspace" class="phase-area hidden">
+            <p class="phase-instruction">ટોપિકને ખેંચીને તેના સાચા કાર્યના ખાનામાં મૂકો:</p>
+            <div id="drag-source-container">
+              <!-- Item to drag -->
+            </div>
+            <div class="drop-bins-grid">
+              <div class="drop-bin glass" data-func="planning">આયોજન (Planning)</div>
+              <div class="drop-bin glass" data-func="organizing">વ્યવસ્થાતંત્ર (Organizing)</div>
+              <div class="drop-bin glass" data-func="staffing">કર્મચારી વ્યવસ્થા (Staffing)</div>
+              <div class="drop-bin glass" data-func="directing">દોરવણી (Directing)</div>
+              <div class="drop-bin glass" data-func="controlling">અંકુશ (Controlling)</div>
+            </div>
+          </div>
+
+          <!-- Phase 3: Pyramid Matching Workspace -->
+          <div id="phase-pyramid-workspace" class="phase-area hidden">
+            <p class="phase-instruction">રેસ્ટોરન્ટના હોદ્દાઓને સંચાલનની યોગ્ય સપાટી પર ગોઠવો:</p>
+            <div id="pyramid-source-container">
+              <!-- Cards to drag/click to place -->
+            </div>
+            <div class="pyramid-container">
+              <div class="pyramid-level glass" id="pyramid-top" data-level="top">
+                <span class="pyramid-label">ઉચ્ચ સપાટી (Top)</span>
+                <div class="pyramid-slots"></div>
+              </div>
+              <div class="pyramid-level glass" id="pyramid-middle" data-level="middle">
+                <span class="pyramid-label">મધ્ય સપાટી (Middle)</span>
+                <div class="pyramid-slots"></div>
+              </div>
+              <div class="pyramid-level glass" id="pyramid-bottom" data-level="bottom">
+                <span class="pyramid-label">તળ સપાટી (Bottom)</span>
+                <div class="pyramid-slots"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 4: MCQs Case Study Workspace -->
+          <div id="phase-mcq-workspace" class="phase-area hidden">
+            <h4 id="mcq-question-text">કેસ સ્ટડી પ્રશ્ન...</h4>
+            <div id="mcq-options-grid" class="mcq-grid">
+              <!-- Buttons for options -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Feedback Overlay for incorrect answer micro-explanations -->
+        <div id="assess-feedback-overlay" class="feedback-overlay glass hidden">
+          <div class="feedback-content glass">
+            <span class="feedback-icon">❌ ખોટું!</span>
+            <h4>વ્યવહારુ સમજૂતી:</h4>
+            <p id="feedback-explanation">અહીં ખુલાસો આવશે...</p>
+            <button id="btn-feedback-next" class="btn btn-primary btn-sm">આગળ વધો</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Screen C: Results Page -->
+      <div id="assess-results-screen" class="assess-screen glass hidden">
+        <h3 class="neon-text">મૂલ્યાંકન પરિણામ</h3>
+        <div class="score-circle">
+          <span id="final-score-num">૦</span>
+          <label>/ ૨૫ માર્ક્સ</label>
+        </div>
+        <p id="results-comment">સરસ પ્રયત્ન!</p>
+        <button id="btn-assess-retry" class="btn btn-neon">ફરી પ્રયાસ કરો</button>
+        <button onclick="switchView('view-dashboard')" class="btn btn-secondary">મુખ્ય પાનું</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Sticky Bottom Navigation Bar -->
+  <nav class="app-nav">
+    <button class="nav-item active" onclick="switchView('view-dashboard')" id="nav-dashboard">
+      <span class="nav-icon">🏠</span>
+      <span class="nav-label">મુખ્ય પાનું</span>
+    </button>
+    <button class="nav-item" onclick="switchView('view-tree')" id="nav-tree">
+      <span class="nav-icon">🌳</span>
+      <span class="nav-label">જ્ઞાન વૃક્ષ</span>
+    </button>
+    <button class="nav-item" onclick="switchView('view-games')" id="nav-games">
+      <span class="nav-icon">🎮</span>
+      <span class="nav-label">રમતો</span>
+    </button>
+    <button class="nav-item" onclick="switchView('view-assessment')" id="nav-assessment">
+      <span class="nav-icon">📝</span>
+      <span class="nav-label">મૂલ્યાંકન</span>
+    </button>
+  </nav>
+
+  <!-- External App Scripts -->
+  <script src="app.js"></script>
+  <script src="games.js"></script>
+  <script src="assessment.js"></script>
+</body>
+</html>
