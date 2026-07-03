@@ -16,8 +16,9 @@ function switchView(viewId) {
   // Stop any active speech when switching views
   stopSpeech();
   
-  // Hide active subtitles bar
+  // Hide active subtitles bar and instruction modal
   document.getElementById('subtitles-container').classList.add('hidden');
+  document.getElementById('instruction-modal').classList.add('hidden');
 
   // Deactivate all views and nav buttons
   document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active'));
@@ -37,7 +38,7 @@ function switchView(viewId) {
     targetBtn.classList.add('active');
   }
 
-  // Orchestrate games startup/shutdown
+  // Orchestrate games shutdown
   if (viewId !== 'view-games') {
     exitGames();
   }
@@ -48,12 +49,41 @@ function switchView(viewId) {
   }
 }
 
-// 2. Knowledge Tree Dataset (Gujarati Medium Syllabus Mapping)
+// 2. Reusable Phase/Game Instruction Popup Modal
+function showInstructionModal(title, points, onOk) {
+  stopSpeech();
+
+  const modal = document.getElementById('instruction-modal');
+  const titleEl = document.getElementById('instruction-title');
+  const listEl = document.getElementById('instruction-list');
+  const btnOk = document.getElementById('btn-instruction-ok');
+  const btnSpeak = document.getElementById('btn-instruction-speak');
+
+  titleEl.innerText = title;
+  listEl.innerHTML = points.map(pt => `<li>${pt}</li>`).join('');
+
+  // Prepare text for speech engine (joins with slight pause punctuation)
+  const speakTextStr = title + ". " + points.join(". ");
+
+  btnOk.onclick = () => {
+    modal.classList.add('hidden');
+    stopSpeech();
+    if (onOk) onOk();
+  };
+
+  btnSpeak.onclick = () => {
+    speakText(speakTextStr);
+  };
+
+  modal.classList.remove('hidden');
+}
+
+// 3. Knowledge Tree Dataset (Gujarati Medium Syllabus Mapping)
 const knowledgeTreeData = [
   {
     id: 'node-meaning',
     topicNo: 'વિભાગ ૧.૧',
-    title: 'સંચાલનનો અર્થ (George Terry & Livingston)',
+    title: 'સંચાલનનો અર્થ (George & Livingston)',
     icon: '🍲',
     analogy: 'ધારો કે તમે એક પાણીપુરીની લારી શરૂ કરી. કયા સમયે બટાકા મસાલો બનાવવો, કેટલો સ્ટાફ રાખવો અને સાંજે ગલ્લા પર હિસાબ કઈ રીતે કરવો જેથી લારી નફામાં ચાલે - આ બધું આયોજનબદ્ધ રીતે મેનેજ કરવું એટલે જ સંચાલન.',
     definition: 'લિવિંગસ્ટનના મતે: "ઓછામાં ઓછા સમયે અને ખર્ચે, ઉપલબ્ધ સાધનોના શ્રેષ્ઠ ઉપયોગથી ધ્યેય સિદ્ધ કરવાની પ્રક્રિયા એટલે સંચાલન." જ્યોર્જ ટેરીના મતે: "તે માણસો, સાધનો, પદ્ધતિઓ, નાણું અને બજારનું આયોજન કરી તેના પર અંકુશ રાખવાનું કામ કરે છે જેથી નક્કી કરેલા ધ્યેયો પ્રાપ્ત થાય."',
@@ -133,13 +163,13 @@ const knowledgeTreeData = [
   }
 ];
 
-// 3. Render Knowledge Tree Nodes
+// 4. Render Knowledge Tree Nodes
 function renderKnowledgeTree() {
   const grid = document.getElementById('knowledge-tree-grid');
   if (!grid) return;
   grid.innerHTML = '';
 
-  knowledgeTreeData.forEach((node, index) => {
+  knowledgeTreeData.forEach((node) => {
     const isCompleted = state.completedNodes.includes(node.id);
     const card = document.createElement('div');
     card.className = `tree-node-card glass ${isCompleted ? 'completed' : ''}`;
@@ -166,7 +196,7 @@ function updateProgressStats() {
   if (highScoreSpan) highScoreSpan.innerText = `${state.highScore}/૨૫`;
 }
 
-// 4. Modal Interactions
+// 5. Modal Interactions
 let currentActiveNode = null;
 function openNodeModal(node) {
   currentActiveNode = node;
@@ -182,7 +212,6 @@ function openNodeModal(node) {
   if (!state.completedNodes.includes(node.id)) {
     state.completedNodes.push(node.id);
     localStorage.setItem('completedNodes', JSON.stringify(state.completedNodes));
-    // Apply styling class to completed card
     const card = document.getElementById(`tree-card-${node.id}`);
     if (card) card.classList.add('completed');
     updateProgressStats();
@@ -205,7 +234,7 @@ document.getElementById('btn-next-node').onclick = () => {
   openNodeModal(knowledgeTreeData[nextIndex]);
 };
 
-// 5. Audio Narration Engine using Web Speech API (Gujarati 'gu-IN' configuration)
+// 6. Audio Narration Engine using Web Speech API (Gujarati 'gu-IN' configuration)
 function setupVoiceSynthesis() {
   if (!state.speechSynth) return;
 
@@ -215,7 +244,6 @@ function setupVoiceSynthesis() {
     if (!select) return;
     select.innerHTML = '';
 
-    // Filter for Indian voices or Gujarati voices if available, fallback to local ones
     let guVoice = null;
     voices.forEach(voice => {
       if (voice.lang.includes('gu-IN') || voice.lang.includes('gu')) {
@@ -227,7 +255,6 @@ function setupVoiceSynthesis() {
       select.appendChild(option);
     });
 
-    // Default select Gujarati voice if found, else search for Indian English voices or standard local voice
     if (guVoice) {
       state.selectedVoice = guVoice;
       select.value = guVoice.name;
@@ -247,7 +274,6 @@ function setupVoiceSynthesis() {
     state.speechSynth.onvoiceschanged = loadVoices;
   }
 
-  // Bind settings listeners
   document.getElementById('voice-select').onchange = (e) => {
     state.selectedVoice = state.speechSynth.getVoices().find(v => v.name === e.target.value);
   };
@@ -256,7 +282,6 @@ function setupVoiceSynthesis() {
     state.speechRate = parseFloat(e.target.value);
     document.getElementById('speed-val').innerText = `${state.speechRate}x`;
     if (state.speechUtterance) {
-      // Restart speech with new speed if actively playing
       const txt = state.currentSpokenText;
       stopSpeech();
       speakText(txt);
@@ -271,7 +296,6 @@ function setupVoiceSynthesis() {
   };
 }
 
-// Speak button binding inside the modal
 document.getElementById('btn-speak-node').onclick = () => {
   if (currentActiveNode) {
     speakText(currentActiveNode.voiceText);
@@ -283,13 +307,10 @@ function speakText(text) {
   stopSpeech();
 
   state.currentSpokenText = text;
-  
-  // Set up utterance
   state.speechUtterance = new SpeechSynthesisUtterance(text);
   if (state.selectedVoice) {
     state.speechUtterance.voice = state.selectedVoice;
   }
-  // Try to force Gujarati locale if supported
   state.speechUtterance.lang = 'gu-IN';
   state.speechUtterance.rate = state.speechRate;
 
@@ -298,33 +319,13 @@ function speakText(text) {
   
   subtitlesBar.classList.remove('hidden');
   
-  // Format text into words for dynamic subtitle highlighting
   const words = text.split(' ');
   let wordIndex = 0;
 
   subtitlesText.innerHTML = words.map((w, i) => `<span id="word-${i}">${w}</span>`).join(' ');
 
-  // Listeners for Speech Progress
-  state.speechUtterance.onboundary = (event) => {
-    if (event.name === 'word') {
-      // Un-highlight previous
-      document.querySelectorAll('.highlight-word').forEach(el => el.classList.remove('highlight-word'));
-      
-      const currentWordId = `word-${wordIndex}`;
-      const wordEl = document.getElementById(currentWordId);
-      if (wordEl) {
-        wordEl.className = 'highlight-word';
-        // Auto-scroll subtitles bar if overflowing on mobile screen
-        wordEl.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-      wordIndex++;
-    }
-  };
-
-  // Fallback timer highlight if boundary events are not supported by the browser engine
   let fallbackInterval = null;
   state.speechUtterance.onstart = () => {
-    // If boundary events don't trigger within 500ms, start a basic word highlight sequencer
     let boundaryTriggered = false;
     state.speechUtterance.onboundary = (e) => {
       boundaryTriggered = true;
@@ -340,7 +341,6 @@ function speakText(text) {
     setTimeout(() => {
       if (!boundaryTriggered) {
         let currentIdx = 0;
-        // Approximate reading speed (e.g. 150 words per minute scaled by rate)
         const msPerWord = (60000 / 150) / state.speechRate;
         
         fallbackInterval = setInterval(() => {
@@ -377,7 +377,7 @@ function stopSpeech() {
   }
 }
 
-// 6. Voice Overlay Panels Toggle
+// 7. Voice Overlay Panels Toggle
 document.getElementById('audio-panel-toggle').onclick = () => {
   const panel = document.getElementById('audio-settings-panel');
   panel.classList.toggle('hidden');
@@ -387,14 +387,11 @@ document.getElementById('audio-panel-close').onclick = () => {
   document.getElementById('audio-settings-panel').classList.add('hidden');
 };
 
-// 7. PWA Install Event Handler
+// 8. PWA Install Event Handler
 let deferredPrompt = null;
 window.addEventListener('beforeinstallprompt', (e) => {
-  // Prevent Chrome 67 and earlier from automatically showing the prompt
   e.preventDefault();
-  // Stash the event so it can be triggered later.
   deferredPrompt = e;
-  // Show custom installation banner
   const installBanner = document.getElementById('install-banner');
   if (installBanner) {
     installBanner.classList.remove('hidden');
@@ -403,14 +400,10 @@ window.addEventListener('beforeinstallprompt', (e) => {
 
 document.getElementById('btn-install').onclick = async () => {
   if (!deferredPrompt) return;
-  // Show install prompt
   deferredPrompt.prompt();
-  // Wait for the user to respond to the prompt
   const { outcome } = await deferredPrompt.userChoice;
   console.log(`PWA Install decision outcome: ${outcome}`);
-  // Clear variable
   deferredPrompt = null;
-  // Hide custom installation banner
   document.getElementById('install-banner').classList.add('hidden');
 };
 
@@ -418,7 +411,7 @@ document.getElementById('btn-close-banner').onclick = () => {
   document.getElementById('install-banner').classList.add('hidden');
 };
 
-// 8. Service Worker Registration
+// 9. Service Worker Registration
 window.addEventListener('load', () => {
   setupVoiceSynthesis();
   renderKnowledgeTree();

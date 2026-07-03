@@ -56,6 +56,22 @@
     </div>
   </div>
 
+  <!-- Reusable Instruction Modal Overlay -->
+  <div id="instruction-modal" class="modal glass hidden">
+    <div class="modal-content glass">
+      <h3 id="instruction-title" class="neon-text-cyan">તબક્કો ૧: સૂચનાઓ</h3>
+      <div class="instruction-body">
+        <ul id="instruction-list">
+          <!-- Populated dynamically in app.js/assessment.js -->
+        </ul>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-instruction-speak" class="btn btn-neon">🔊 સાંભળો</button>
+        <button id="btn-instruction-ok" class="btn btn-primary">શરૂ કરો</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Audio Narration Panel Overlay -->
   <div id="audio-settings-panel" class="audio-panel glass hidden">
     <div class="panel-header">
@@ -125,8 +141,8 @@
 
           <div class="menu-item glass" onclick="switchView('view-games')">
             <div class="menu-text">
-              <h5>૨. શૈક્ષણિક રમતો (Minigames)</h5>
-              <p>પાણીપુરી વેચો અને સમયસર આપત્તિઓ મેનેજ કરવાનું શીખો!</p>
+              <h5>૨. શૈક્ષણિક રમત (Minigame)</h5>
+              <p>આફતો અને આપત્તિઓને સમયસર સાચા વિભાગમાં સોંપવાનું શીખો!</p>
             </div>
             <span class="arrow">➔</span>
           </div>
@@ -190,64 +206,20 @@
     <!-- View 3: Minigames (રમતો) -->
     <section id="view-games" class="app-view">
       <div class="view-header">
-        <h2>મેનેજમેન્ટ રમતો</h2>
-        <p>મનોરંજક રમતો રમીને સંચાલકીય અનુભવ મેળવો</p>
+        <h2>મેનેજમેન્ટ રમત</h2>
+        <p>મનોરંજક રમત રમીને સંચાલકીય અનુભવ મેળવો</p>
       </div>
 
       <div class="games-selector" id="games-selection-screen">
-        <div class="game-card glass" onclick="startStreetFoodGame()">
-          <div class="game-visual text-glow-cyan">🍲</div>
-          <h3>પાણીપુરી ટાયકૂન</h3>
-          <p>આયોજન, સ્ટાફિંગ અને અંકુશ દ્વારા લારી ચલાવો અને નફો કરો!</p>
-          <button class="btn btn-neon btn-sm">રમો</button>
-        </div>
-
         <div class="game-card glass" onclick="startCrisisSorterGame()">
           <div class="game-visual text-glow-pink">⚠️</div>
-          <h3>આફત વ્યવસ્થાપક</h3>
-          <p>પડતી આપત્તિઓને તેમના સાચા સંચાલકીય વિભાગોમાં સ્વાઇપ કરો!</p>
-          <button class="btn btn-neon btn-sm">રમો</button>
+          <h3>આફત વ્યવસ્થાપક (Crisis Sorter)</h3>
+          <p>વ્યવહારુ મુશ્કેલીઓને યોગ્ય સંચાલકીય કાર્યક્ષેત્રના ડબ્બામાં નાખો!</p>
+          <button class="btn btn-neon btn-sm">રમત શરૂ કરો</button>
         </div>
       </div>
 
-      <!-- Game Container 1: Street Food Tycoon (Canvas) -->
-      <div id="game-street-food-container" class="game-active-container hidden">
-        <div class="game-bar glass">
-          <button onclick="exitGames()" class="btn btn-secondary btn-sm">◀ બહાર નીકળો</button>
-          <span class="game-title">પાણીપુરી ટાયકૂન</span>
-          <span id="food-game-score" class="game-badge">બજેટ: ₹૧૦૦૦</span>
-        </div>
-        <div class="canvas-wrapper">
-          <canvas id="street-food-canvas" width="360" height="420"></canvas>
-        </div>
-        <div id="street-food-controls" class="game-control-buttons">
-          <button id="btn-plan-stock" class="btn btn-neon btn-sm">📋 સ્ટોક ખરીદો (આયોજન)</button>
-          <button id="btn-staff-hire" class="btn btn-neon btn-sm">🧑‍🍳 સ્ટાફ રાખો (કર્મચારી)</button>
-          <button id="btn-control-adjust" class="btn btn-neon btn-sm">⚙️ ભાવ/ગુણવત્તા (અંકુશ)</button>
-        </div>
-        <!-- Modal for controlling adjustments -->
-        <div id="control-settings-modal" class="modal glass hidden">
-          <div class="modal-content glass">
-            <h3>અંકુશ અને વ્યવસ્થાપન</h3>
-            <p>ગ્રાહકોને સંતોષ આપવા માટે ભાવ અને ગુણવત્તા સેટ કરો:</p>
-            <div class="setting-item">
-              <label for="stall-price">એક પ્લેટના ભાવ: <span id="price-val">₹૨૦</span></label>
-              <input type="range" id="stall-price" min="10" max="50" step="5" value="20">
-            </div>
-            <div class="setting-item">
-              <label for="stall-quality">મસાલાની ગુણવત્તા:</label>
-              <select id="stall-quality" class="glass-input">
-                <option value="high">ઉચ્ચ (સારી પ્રતિષ્ઠા, મોંઘી)</option>
-                <option value="medium" selected>મધ્યમ (સામાન્ય)</option>
-                <option value="low">નિમ્ન (નફો વધુ, લોકો બીમાર પડી શકે)</option>
-              </select>
-            </div>
-            <button id="btn-close-control-modal" class="btn btn-primary btn-sm">લાગુ કરો</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Game Container 2: Crisis Sorter (DOM Swipe) -->
+      <!-- Game Container: Crisis Sorter (DOM Swipe) -->
       <div id="game-crisis-container" class="game-active-container hidden">
         <div class="game-bar glass">
           <button onclick="exitGames()" class="btn btn-secondary btn-sm">◀ બહાર નીકળો</button>
@@ -256,22 +228,25 @@
         </div>
         <div id="crisis-playfield" class="playfield-area">
           <div class="instructions-overlay">
-            આવતી આપત્તિને નીચે દર્શાવેલા યોગ્ય વિભાગના ખાનામાં ખેંચીને (Swipe) મૂકો!
+            ચોરસ આપત્તિ પત્રકને નીચે દર્શાવેલા યોગ્ય વિભાગના ખાનામાં ખેંચીને (Swipe) મૂકો!
           </div>
-          <!-- Bubbles fall here -->
+          <!-- Static rectangle card spawned here -->
+          <div id="crisis-card-center" class="crisis-card-rect hidden">
+            <!-- Injected via games.js -->
+          </div>
         </div>
         <div class="crisis-bins">
           <div id="bin-production" class="crisis-bin glass" data-bin="production">
-            <span>ઉત્પાદન</span>
+            <span>ઉત્પાદન સંચાલન</span>
           </div>
           <div id="bin-finance" class="crisis-bin glass" data-bin="finance">
-            <span>નાણાકીય</span>
+            <span>નાણાકીય સંચાલન</span>
           </div>
           <div id="bin-hr" class="crisis-bin glass" data-bin="hr">
-            <span>કર્મચારી</span>
+            <span>કર્મચારી સંચાલન</span>
           </div>
           <div id="bin-marketing" class="crisis-bin glass" data-bin="marketing">
-            <span>માર્કેટિંગ</span>
+            <span>માર્કેટિંગ સંચાલન</span>
           </div>
         </div>
       </div>
@@ -286,13 +261,13 @@
 
       <!-- Screen A: Intro/Start -->
       <div id="assess-intro-screen" class="assess-screen glass">
-        <div class="badge-badge">🏆 પરીક્ષા નિયમો</div>
+        <div class="badge-badge">🏆 પરીક્ષા વિગતો</div>
         <h3>કુલ માર્ક્સ: ૨૫</h3>
         <ul>
-          <li><strong>તબક્કો ૧ (૫ માર્ક્સ)</strong>: સ્વાઇપ ટિન્ડર કાર્ડ (સાચું/ખોટું)</li>
-          <li><strong>તબક્કો ૨ (૫ માર્ક્સ)</strong>: કાર્યો ગોઠવો (આયોજન, વ્યવસ્થાતંત્ર, વગેરે)</li>
-          <li><strong>તબક્કો ૩ (૫ માર્ક્સ)</strong>: સંચાલનની સપાટીઓનો પિરામિડ સેટ કરો</li>
-          <li><strong>તબક્કો ૪ (૧૦ માર્ક્સ)</strong>: વ્યવહારુ કેસ સ્ટડીઝ પરથી સાચો વિકલ્પ પસંદ કરો</li>
+          <li><strong>તબક્કો ૧ (૫ માર્ક્સ)</strong>: ૧૦ સાચા/ખોટા પત્રક સ્વાઇપ કરો</li>
+          <li><strong>તબક્કો ૨ (૫ માર્ક્સ)</strong>: ૮ કાર્યોને યોગ્ય વિભાગમાં ગોઠવો</li>
+          <li><strong>તબક્કો ૩ (૫ માર્ક્સ)</strong>: ૮ હોદ્દાઓ સપાટી પિરામિડ પર મૂકો</li>
+          <li><strong>તબક્કો ૪ (૧૦ માર્ક્સ)</strong>: ૮ કેસ સ્ટડી આધારિત વૈકલ્પિક પ્રશ્નો</li>
         </ul>
         <button id="btn-start-assess" class="btn btn-neon">પરીક્ષા શરૂ કરો</button>
       </div>
@@ -307,14 +282,14 @@
         <!-- Dynamic Container for current phase -->
         <div id="assess-phase-container" class="phase-workspace">
           
-          <!-- Phase 1: Swipe Tinder Workspace -->
+          <!-- Phase 1: Swipe Tinder Workspace (Lowered cards position to avoid overlapping) -->
           <div id="phase-swipe-workspace" class="phase-area hidden">
-            <div id="tinder-card-container" class="tinder-card-box">
-              <!-- Card injected dynamically -->
-            </div>
             <div class="swipe-hints">
               <span class="hint-left">◀ ખોટું (Left)</span>
               <span class="hint-right">સાચું (Right) ▶</span>
+            </div>
+            <div id="tinder-card-container" class="tinder-card-box">
+              <!-- Card injected dynamically -->
             </div>
           </div>
 
@@ -326,7 +301,7 @@
             </div>
             <div class="drop-bins-grid">
               <div class="drop-bin glass" data-func="planning">આયોજન (Planning)</div>
-              <div class="drop-bin glass" data-func="organizing">વ્યવસ્થાતંત્ર (Organizing)</div>
+              <div class="drop-bin glass" data-func="organizing">ব্যবસ્થાઓ (Organizing)</div>
               <div class="drop-bin glass" data-func="staffing">કર્મચારી વ્યવસ્થા (Staffing)</div>
               <div class="drop-bin glass" data-func="directing">દોરવણી (Directing)</div>
               <div class="drop-bin glass" data-func="controlling">અંકુશ (Controlling)</div>
@@ -403,7 +378,7 @@
     </button>
     <button class="nav-item" onclick="switchView('view-games')" id="nav-games">
       <span class="nav-icon">🎮</span>
-      <span class="nav-label">રમતો</span>
+      <span class="nav-label">રમત</span>
     </button>
     <button class="nav-item" onclick="switchView('view-assessment')" id="nav-assessment">
       <span class="nav-icon">📝</span>

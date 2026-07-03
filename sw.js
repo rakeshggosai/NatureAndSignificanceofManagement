@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sanchalan-sathi-cache-v1';
+const CACHE_NAME = 'sanchalan-sathi-cache-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -44,16 +44,13 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
       .then((cachedResponse) => {
-        // Return cached version if found, otherwise perform network fetch
         if (cachedResponse) {
           return cachedResponse;
         }
         return fetch(event.request).then((networkResponse) => {
-          // Check if response is valid before caching
           if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
             return networkResponse;
           }
-          // Dynamic caching of new network requests if applicable
           const responseToCache = networkResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);
@@ -61,7 +58,6 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         });
       }).catch(() => {
-        // Fallback for offline if request fails completely and isn't cached
         if (event.request.mode === 'navigate') {
           return caches.match('./index.html');
         }
