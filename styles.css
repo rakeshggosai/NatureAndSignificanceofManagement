@@ -1536,7 +1536,20 @@ h4 { font-size: 16px; }
   cursor: default;
 }
 
-/* Verification State Styling */
+/* Verification & Interactive Story Narration State Styling */
+@keyframes cardPulse {
+  0% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); transform: scale(1); }
+  50% { box-shadow: 0 0 25px rgba(0, 242, 254, 0.85); transform: scale(1.02); }
+  100% { box-shadow: 0 0 10px rgba(0, 242, 254, 0.4); transform: scale(1); }
+}
+
+.card-narrating {
+  border-color: var(--neon-cyan) !important;
+  background: rgba(0, 242, 254, 0.15) !important;
+  animation: cardPulse 1.2s infinite ease-in-out !important;
+  z-index: 10;
+}
+
 .card-correct {
   border-color: var(--neon-emerald) !important;
   background: rgba(0, 255, 135, 0.06) !important;

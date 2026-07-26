@@ -7,7 +7,7 @@ const longQuestionsData = [
     title: 'સંચાલનનું સ્વરૂપ / લાક્ષણિકતાઓ (૭ મુદ્દા)',
     mnemonic: 'સ હે જૂ સ મા નિ વિ',
     mnemonicDesc: 'સૂત્ર: સ-હે-જૂ-સ-મા-નિ-વિ (૭ મુખ્‍ય અક્ષરો)',
-    speechText: 'પ્રશ્ન: સંચાલનનું સ્વરૂપ અને લાક્ષણિકતાઓ જણાવો. સૂત્ર છે: સ હે જૂ સ મા નિ વિ. ૧: સર્વવ્યાપી પ્રવૃત્તિ, ૨: હેતુલક્ષી પ્રવૃત્તિ, ૩: જૂથ પ્રવૃત્તિ, ૪: સતત ચાલતી પ્રવૃત્તિ, ૫: માનવીય પ્રવૃત્તિ, ૬: નિર્ણય પ્રક્રિયા, ૭: વિજ્ઞાન, કળા અને વ્યવસાય.',
+    speechText: 'પ્રશ્ન: સંચાલનનું સ્વરૂપ અને લાક્ષણિકતાઓ જણાવો. સૂત્ર છે: સ હે જૂ સ મા નિ વિ.',
     items: [
       { id: 'lq1-1', key: 'સ', title: '૧. સર્વવ્યાપી પ્રવૃત્તિ', icon: '🌐', color: '#00f2fe', desc: 'સંચાલન માત્ર ધંધામાં જ નહીં પરંતુ સામાજિક, ધાર્મિક, લશ્કરી અને શૈક્ષણિક દરેક ક્ષેત્રમાં જોવા મળે છે.' },
       { id: 'lq1-2', key: 'હે', title: '૨. હેતુલક્ષી પ્રવૃત્તિ', icon: '🎯', color: '#c471ed', desc: 'સંચાલન એ સાધન છે સાધ્ય નથી. દરેક ધંધાકીય એકમના ચોક્કસ હેતુઓ સિદ્ધ કરવા સંચાલન જરૂરી છે.' },
@@ -24,7 +24,7 @@ const longQuestionsData = [
     title: 'સંચાલનનું મહત્વ (૮ મુદ્દા)',
     mnemonic: 'દ સા ધ ધ રો ન સા રા',
     mnemonicDesc: 'સૂત્ર: દ-સા-ધ-ધ-રો-ન-સા-રા (૮ મુખ્‍ય અક્ષરો)',
-    speechText: 'પ્રશ્ન: સંચાલનનું મહત્વ સમજાવો. સૂત્ર છે: દ સા ધ ધ રો ન સા રા. ૧: દરેક ક્ષેત્રમાં જરૂરી, ૨: સાધનોનો ઇષ્ટતમ ઉપયોગ, ૩: ધ્યેયસિદ્ધિ, ૪: ધંધાની સફળતા માટે ઉપયોગી, ૫: રોજગારીની તકોમાં વધારો, ૬: નફામાં વૃદ્ધિ, ૭: સામાજિક લાભ, ૮: રાષ્ટ્રીય હેતુ.',
+    speechText: 'પ્રશ્ન: સંચાલનનું મહત્વ સમજાવો. સૂત્ર છે: દ સા ધ ધ રો ન સા રા.',
     items: [
       { id: 'lq2-1', key: 'દ', title: '૧. દરેક ક્ષેત્રમાં જરૂરી', icon: '🏢', color: '#00f2fe', desc: 'ઉદ્યોગ ઉપરાંત રમત-ગમત, સંરક્ષણ, ધર્મ અને રાજકારણ જેવા તમામ ક્ષેત્રોમાં સંચાલન અનિવાર્ય છે.' },
       { id: 'lq2-2', key: 'સા', title: '૨. સાધનોનો ઇષ્ટતમ ઉપયોગ', icon: '⚡', color: '#00ff87', desc: 'જમીન, મૂડી, કાચો માલ અને માનવસાધનોનો મહત્તમ ઉપયોગ શક્ય બને છે અને વેડફાટ અટકે છે.' },
@@ -42,7 +42,7 @@ const longQuestionsData = [
     title: 'સંચાલનના કાર્યો - POSDC (૫ મુદ્દા)',
     mnemonic: 'આ વ ક દો અ',
     mnemonicDesc: 'સૂત્ર: આ-વ-ક-દો-અ (POSDC - ૫ કાર્યો)',
-    speechText: 'પ્રશ્ન: સંચાલનના કાર્યો વર્ણવો. સૂત્ર છે: આ વ ક દો અ. ૧: આયોજન (Planning), ૨: વ્યવસ્થાતંત્ર (Organizing), ૩: કર્મચારી વ્યવસ્થા (Staffing), ૪: દોરવણી (Directing), ૫: અંકુશ (Controlling).',
+    speechText: 'પ્રશ્ન: સંચાલનના કાર્યો વર્ણવો. સૂત્ર છે: આ વ ક દો અ.',
     items: [
       { id: 'lq3-1', key: 'આ', title: '૧. આયોજન (Planning)', icon: '🗺️', color: '#00f2fe', desc: 'અપેક્ષિત પરિણામો મેળવવા માટે ભવિષ્યની વિચારણા અગાઉથી કરવી. આયોજન એ સંચાલનનું મગજ છે.' },
       { id: 'lq3-2', key: 'વ', title: '૨. વ્યવસ્થાતંત્ર (Organizing)', icon: '🏗️', color: '#c471ed', desc: 'સમાન હેતુ માટે કામ કરતા લોકો વચ્ચે સત્તા અને જવાબદારીની વહેંચણી કરતું માળખું એટલે વ્યવસ્થાતંત્ર.' },
@@ -57,7 +57,7 @@ const longQuestionsData = [
     title: 'ઉચ્ચ સપાટી સંચાલનના કાર્યો (૬ મુદ્દા)',
     mnemonic: 'હે ટ્ર ની અ કા વ્ય',
     mnemonicDesc: 'સૂત્ર: હે-ટ્ર-ની-અ-કા-વ્યૂ (૬ મુખ્‍ય કાર્યો)',
-    speechText: 'પ્રશ્ન: ઉચ્ચ સપાટી સંચાલનના કાર્યો જણાવો. સૂત્ર છે: હે ટ્ર ની અ કા વ્ય. ૧: મુખ્ય અને ગૌણ હેતુઓ નક્કી કરવા, ૨: કંપનીના ટ્રસ્ટી તરીકે કાર્ય કરવું, ૩: ઉચ્ચ અધિકારીઓની નિમણૂક કરવી, ૪: વિવિધ વિભાગીય અંદાજપત્રો મંજૂર કરવા, ૫: કાનૂની જોગવાઈઓનું પાલન કરવું, ૬: લાંબા ગાળાનું આયોજન અને વ્યૂહાત્મક નિર્ણયો લેવા.',
+    speechText: 'પ્રશ્ન: ઉચ્ચ સપાટી સંચાલનના કાર્યો જણાવો. સૂત્ર છે: હે ટ્ર ની અ કા વ્ય.',
     items: [
       { id: 'lq4-1', key: 'હે', title: '૧. હેતુઓ નક્કી કરવા', icon: '🎯', color: '#00f2fe', desc: 'ધંધાકીય એકમના મુખ્ય અને ગૌણ હેતુઓ નક્કી કરવાનું કાર્ય ઉચ્ચ સપાટીએ થાય છે.' },
       { id: 'lq4-2', key: 'ટ્ર', title: '૨. ટ્રસ્ટી તરીકે કાર્ય', icon: '🛡️', color: '#c471ed', desc: 'સંચાલક મંડળ (Board of Directors) કંપનીના ટ્રસ્ટી તરીકે માલિકોના હિતોનું રક્ષણ કરે છે.' },
@@ -73,7 +73,7 @@ const longQuestionsData = [
     title: 'માર્કેટિંગ સંચાલનના કાર્યો / 4 Ps (૪ મુદ્દા)',
     mnemonic: 'પે કિં વિ અ',
     mnemonicDesc: 'સૂત્ર: પે-કિં-વિ-અ (Marketing Mix 4 Ps)',
-    speechText: 'પ્રશ્ન: માર્કેટિંગ સંચાલનના મુખ્ય કાર્યો અથવા ૪ Ps વર્ણવો. સૂત્ર છે: પે કિં વિ અ. ૧: પેદાશ મિશ્ર (Product), ૨: કિંમત (Price), ૩: વિતરણ (Place), ૪: અભિવૃદ્ધિ (Promotion).',
+    speechText: 'પ્રશ્ન: માર્કેટિંગ સંચાલનના મુખ્ય કાર્યો અથવા ૪ Ps વર્ણવો. સૂત્ર છે: પે કિં વિ અ.',
     items: [
       { id: 'lq5-1', key: 'પે', title: '૧. પેદાશ અથવા પેદાશ મિશ્ર (Product)', icon: '📦', color: '#00f2fe', desc: 'નવી પેદાશના વિકાસ, તેનો આકાર, રંગ, વજન, છાપ (Branding), પેકિંગ અને ગ્રાહક સેવાઓ નક્કી કરવી.' },
       { id: 'lq5-2', key: 'કિં', title: '૨. કિંમત (Price)', icon: '🏷️', color: '#00ff87', desc: 'ગ્રાહક વ્યાજબી ભાવે વસ્તુ મેળવે તે માટે વેચાણ નીતિ, શાખ નીતિ, વટાવ અને મધ્યસ્થીઓનું કમિશન નક્કી કરવું.' },
@@ -87,7 +87,7 @@ const longQuestionsData = [
     title: 'માનવ સંસાધન સંચાલન (HRM) ના કાર્યો (૫ મુદ્દા)',
     mnemonic: 'ભ આ અ તા સ',
     mnemonicDesc: 'સૂત્ર: ભ-આ-અ-તા-સ (HRM કાર્યો)',
-    speechText: 'પ્રશ્ન: માનવ સંસાધન સંચાલન (HRM) ના કાર્યો જણાવો. સૂત્ર છે: ભ આ અ તા સ. ૧: ભરતી, તાલીમ અને બઢતી, ૨: આયોજન અને ધ્યેય સાંકળવું, ૩: અમૂલ્ય મિલકત સમજી સંચાલન, ૪: તાલીમ આપી વિકાસ, ૫: સંતોષ અને ફેરબદલી દર ઘટાડવો.',
+    speechText: 'પ્રશ્ન: માનવ સંસાધન સંચાલન (HRM) ના કાર્યો જણાવો. સૂત્ર છે: ભ આ અ તા સ.',
     items: [
       { id: 'lq6-1', key: 'ભ', title: '૧. ભરતી, પસંદગી અને તાલીમ', icon: '🤝', color: '#00f2fe', desc: 'કર્મચારીઓની આયોજનપૂર્વક ભરતી કરવી, યોગ્ય પસંદગી કરી તેમની ક્ષમતા મુજબ તાલીમ અને બઢતી આપવી.' },
       { id: 'lq6-2', key: 'આ', title: '૨. આત્મસાત અને ધ્યેય સાંકળવું', icon: '🎯', color: '#c471ed', desc: 'કર્મચારીઓના વ્યક્તિગત ધ્યેયોને કંપનીના મુખ્ય ધ્યેયો સાથે સાંકળીને બંનેની સફળતા સુનિશ્ચિત કરવી.' },
@@ -102,7 +102,7 @@ const longQuestionsData = [
     title: 'નાણાકીય સંચાલનના કાર્યો (૫ મુદ્દા)',
     mnemonic: 'અ આ અ ફ મૂ',
     mnemonicDesc: 'સૂત્ર: અ-આ-અ-ફ-મૂ (Finance Functions)',
-    speechText: 'પ્રશ્ન: નાણાકીય સંચાલનના કાર્યો લખો. સૂત્ર છે: અ આ અ ફ મૂ. ૧: નાણાંની જરૂરિયાતો અંદાજવી, ૨: સમયની દ્રષ્ટિએ આયોજન, ૩: અંદાજપત્ર બનાવવું, ૪: આવકની ફાળવણી કરવી, ૫: મૂડી માળખાનો વિચાર કરવો.',
+    speechText: 'પ્રશ્ન: નાણાકીય સંચાલનના કાર્યો લખો. સૂત્ર છે: અ આ અ ફ મૂ.',
     items: [
       { id: 'lq7-1', key: 'અ', title: '૧. નાણાંની જરૂરિયાતો અંદાજવી', icon: '🧮', color: '#00f2fe', desc: 'ધંધાની સ્થાપના, ચાલુ રાખવા અને વિકાસ કરવા માટે કેટલા નાણાં જોશે તેનો અંદાજ મૂકવો.' },
       { id: 'lq7-2', key: 'આ', title: '૨. સમય દ્રષ્ટિએ નાણાંનું આયોજન', icon: '📅', color: '#c471ed', desc: 'ટૂંકા ગાળા માટે અને લાંબા ગાળા માટે નાણાં ક્યારે અને ક્યાંથી મળશે તેનું આયોજન કરવું.' },
@@ -117,7 +117,7 @@ const longQuestionsData = [
     title: 'ઉત્પાદન સંચાલનના કાર્યો (૫ મુદ્દા)',
     mnemonic: 'ઉ સ વિ ટે મા',
     mnemonicDesc: 'સૂત્ર: ઉ-સ-વિ-ટે-મા (Production Functions)',
-    speechText: 'પ્રશ્ન: ઉત્પાદન સંચાલનના કાર્યો સમજાવો. સૂત્ર છે: ઉ સ વિ ટે મા. ૧: ઉત્પાદન આયોજન કરવું, ૨: ઉત્પાદન સંશોધન કરવું, ૩: વસ્તુ વિકાસ અને પેદાશ મિશ્ર, ૪: ટેકનોલોજી અને યંત્રોની પસંદગી, ૫: માલસામગ્રી અને ગુણવત્તા પર અંકુશ.',
+    speechText: 'પ્રશ્ન: ઉત્પાદન સંચાલનના કાર્યો સમજાવો. સૂત્ર છે: ઉ સ વિ ટે મા.',
     items: [
       { id: 'lq8-1', key: 'ઉ', title: '૧. ઉત્પાદન આયોજન (Planning)', icon: '⚙️', color: '#00f2fe', desc: 'ગ્રાહકોની માંગ મુજબ શું, કેટલું અને ક્યારે ઉત્પાદન કરવું તેનું આયોજન કરવું.' },
       { id: 'lq8-2', key: 'સ', title: '૨. ઉત્પાદન સંશોધન (Research)', icon: '🔬', color: '#c471ed', desc: 'નવી બનાવટ અને સુધારા લાવવા માટે સતત ઉત્પાદન સંશોધન અને રિસર્ચ કરવું.' },
@@ -131,19 +131,18 @@ const longQuestionsData = [
 // Module Internal State
 const longQState = {
   currentIndex: 0,
-  step: 1, // 1 = Study & Mnemonic Test, 2 = Card Ordering, 3 = Completed/Verified
-  userMnemonicInput: '',
+  isSolving: false, // true during active challenge mode
   userOrderedCards: [],
-  isMnemonicVerified: false,
-  verificationResults: [] // array of booleans per card index
+  verificationResults: [], // array of booleans per card index
+  narratingCardIndex: -1 // index of currently glowing card during audio story
 };
 
 // 1. Initialize Long Questions View
 function initLongQuestionsModule() {
   longQState.currentIndex = 0;
-  longQState.step = 1;
-  longQState.isMnemonicVerified = false;
+  longQState.isSolving = false;
   longQState.verificationResults = [];
+  longQState.narratingCardIndex = -1;
 
   renderLongQuestionSelector();
   loadLongQuestion(0);
@@ -167,19 +166,17 @@ function renderLongQuestionSelector() {
   };
 }
 
-// 2. Load Specific Long Question
+// 2. Load Specific Long Question (Initial Study Mode)
 function loadLongQuestion(idx) {
   stopSpeech();
 
   longQState.currentIndex = idx;
-  longQState.step = 1;
-  longQState.isMnemonicVerified = false;
-  longQState.userMnemonicInput = '';
+  longQState.isSolving = false;
   longQState.verificationResults = [];
+  longQState.narratingCardIndex = -1;
 
   const qData = longQuestionsData[idx];
 
-  // Update Selector Dropdown if triggered via prev/next
   const select = document.getElementById('lq-select-question');
   if (select) select.value = idx;
 
@@ -188,28 +185,23 @@ function loadLongQuestion(idx) {
   document.getElementById('lq-question-title').innerText = qData.title;
   document.getElementById('lq-mnemonic-hint').innerText = qData.mnemonicDesc;
 
-  // Set Mnemonic Input Value to original state
-  const inputEl = document.getElementById('lq-mnemonic-input');
-  inputEl.value = qData.mnemonic;
-  inputEl.disabled = false;
-
-  // Copy initial ordered items
+  // Copy initial ordered items for Study Mode
   longQState.userOrderedCards = [...qData.items];
 
-  // Reset Step Progress Indicators
+  // Update Progress UI (Step 1: Study Mode)
   updateStepProgressUI(1);
 
-  // Render Answer Cards in original order for study
+  // Render Answer Cards in original study order
   renderLongQAnswerCards(false);
 
-  // Action Buttons visibility
+  // Control Buttons State for Study Mode
+  document.getElementById('btn-lq-speak').classList.remove('hidden');
   document.getElementById('btn-lq-start-test').classList.remove('hidden');
-  document.getElementById('btn-lq-verify-mnemonic').classList.add('hidden');
   document.getElementById('btn-lq-submit-cards').classList.add('hidden');
   document.getElementById('lq-feedback-banner').classList.add('hidden');
 }
 
-// Next / Previous Buttons
+// Next / Previous Navigation
 function navLongQuestion(direction) {
   let newIdx = longQState.currentIndex + direction;
   if (newIdx < 0) newIdx = longQuestionsData.length - 1;
@@ -217,85 +209,51 @@ function navLongQuestion(direction) {
   loadLongQuestion(newIdx);
 }
 
-// 3. Step 1: Start Memorization Test ("યાદશક્તિ ચકાસો")
+// 3. Start Solving Challenge Mode ("યાદશક્તિ કસોટી")
 function startLongQMnemonicTest() {
-  longQState.step = 1;
-  
-  // Show Instruction Modal on first start
+  stopSpeech();
+
   const instructionPoints = [
-    "૧. મોઢે યાદ રાખવા માટે સૂત્ર (Mnemonic) ઈનપુટ બોક્સમાં ટાઈપ કરો.",
-    "૨. 'સૂત્ર ચકાસો' દબાવતા જો સૂત્ર સાચું હશે તો જ કાર્ડ્સ રજૂ થશે.",
-    "૩. કાર્ડ્સ આડા-અવળા (Shuffled) થઈ જશે, તેને સાચા ક્રમમાં ગોઠવો.",
-    "૪. પછી 'ચકાસણી કરો' બટન દબાવી ૧૦૦% સાચો ક્રમ ચકાસો."
+    "૧. પ્રશ્નના તમામ મુદ્દાઓ (Cards) આડા-અવળા (Shuffled) કરી દેવાયા છે.",
+    "૨. કાર્ડ્સને ▲ / ▼ બટન અથવા ડ્રેગ કરીને સાચા ક્રમમાં ગોઠવો.",
+    "૩. ક્રમ ગોઠવાઈ જાય એટલે 'ચકાસણી કરો' (Submit) બટન દબાવો.",
+    "૪. ૧૦૦% સાચો ક્રમ થતાં જ કમનીય ઓડિયો વાચન સાથે દરેક કાર્ડ લાઈવ હાઈલાઈટ થાશે!"
   ];
 
   showInstructionModal(
-    "મોટા પ્રશ્નો યાદ રાખવાની રીત",
+    "પ્રશ્ન સોલ્વ કરવાની રીત",
     instructionPoints,
     () => {
-      // Clear input and hide cards for student test
-      const inputEl = document.getElementById('lq-mnemonic-input');
-      inputEl.value = '';
-      inputEl.focus();
+      longQState.isSolving = true;
+      longQState.verificationResults = [];
+      longQState.narratingCardIndex = -1;
 
-      document.getElementById('lq-cards-container').classList.add('hidden');
+      const qData = longQuestionsData[longQState.currentIndex];
+
+      // Hide Listen button while solving!
+      document.getElementById('btn-lq-speak').classList.add('hidden');
       document.getElementById('btn-lq-start-test').classList.add('hidden');
-      document.getElementById('btn-lq-verify-mnemonic').classList.remove('hidden');
+      document.getElementById('btn-lq-submit-cards').classList.remove('hidden');
 
+      // Update Progress UI (Step 2: Re-order cards)
+      updateStepProgressUI(2);
+
+      // Banner Prompt
       const banner = document.getElementById('lq-feedback-banner');
       banner.className = 'feedback-banner info-banner glass';
-      banner.innerText = '💡 સૂત્ર (Mnemonic) મોઢે ટાઇપ કરો અને "સૂત્ર ચકાસો" દબાવો:';
+      banner.innerText = '💡 કાર્ડ્સ આડા-અવળા થઈ ગયા છે! ▲/▼ બટન અથવા ડ્રેગ કરીને સાચો ક્રમ ગોઠવો અને "ચકાસણી કરો" દબાવો:';
       banner.classList.remove('hidden');
+
+      // Shuffle Cards for Challenge
+      longQState.userOrderedCards = [...qData.items].sort(() => Math.random() - 0.5);
+
+      // Render Shuffled Interactive Cards
+      renderLongQAnswerCards(true);
     }
   );
 }
 
-// 4. Verify Mnemonic Input
-function verifyLongQMnemonic() {
-  const qData = longQuestionsData[longQState.currentIndex];
-  const inputVal = document.getElementById('lq-mnemonic-input').value.trim();
-
-  // Normalize spaces and case
-  const normTarget = qData.mnemonic.replace(/\s+/g, '').toLowerCase();
-  const normInput = inputVal.replace(/\s+/g, '').toLowerCase();
-
-  const banner = document.getElementById('lq-feedback-banner');
-
-  if (normInput === normTarget) {
-    // Mnemonic Correct! Move to Step 2
-    longQState.isMnemonicVerified = true;
-    longQState.step = 2;
-
-    updateStepProgressUI(2);
-
-    banner.className = 'feedback-banner success-banner glass';
-    banner.innerText = '🎉 સરસ! સૂત્ર સાચું છે! હવે કાર્ડ્સને સાચા ક્રમમાં ગોઠવો:';
-    banner.classList.remove('hidden');
-
-    document.getElementById('lq-mnemonic-input').disabled = true;
-    document.getElementById('btn-lq-verify-mnemonic').classList.add('hidden');
-    document.getElementById('btn-lq-submit-cards').classList.remove('hidden');
-
-    // Shuffle Cards for Ordering Challenge
-    longQState.userOrderedCards = [...qData.items].sort(() => Math.random() - 0.5);
-    
-    // Render Shuffled Cards with Drag & Reorder buttons
-    document.getElementById('lq-cards-container').classList.remove('hidden');
-    renderLongQAnswerCards(true);
-  } else {
-    // Mnemonic Incorrect
-    banner.className = 'feedback-banner error-banner glass';
-    banner.innerText = `❌ સૂત્ર ખોટું છે! સાચું સૂત્ર: "${qData.mnemonic}". ફરીથી પ્રયાસ કરો.`;
-    banner.classList.remove('hidden');
-    
-    // Shake effect
-    const inputEl = document.getElementById('lq-mnemonic-input');
-    inputEl.classList.add('shake');
-    setTimeout(() => inputEl.classList.remove('shake'), 400);
-  }
-}
-
-// 5. Render Answer Cards List (with Touch Up/Down Reorder & Drag Drop)
+// 4. Render Answer Cards List (with Touch Up/Down Reorder, Drag Drop & Real-time Narration Highlight)
 function renderLongQAnswerCards(interactive = false) {
   const container = document.getElementById('lq-cards-container');
   if (!container) return;
@@ -305,13 +263,20 @@ function renderLongQAnswerCards(interactive = false) {
   longQState.userOrderedCards.forEach((card, index) => {
     const cardEl = document.createElement('div');
     
-    // Determine card verification status styling
+    // Status styling
     let statusClass = '';
     if (longQState.verificationResults.length > 0) {
       statusClass = longQState.verificationResults[index] ? 'card-correct' : 'card-incorrect';
     }
 
+    // Active TTS Narration Highlight class
+    const isNarrating = (longQState.narratingCardIndex === index);
+    if (isNarrating) {
+      statusClass += ' card-narrating';
+    }
+
     cardEl.className = `lq-card glass ${statusClass} ${interactive ? 'interactive' : ''}`;
+    cardEl.id = `lq-card-item-${index}`;
     cardEl.dataset.index = index;
 
     cardEl.innerHTML = `
@@ -330,8 +295,8 @@ function renderLongQAnswerCards(interactive = false) {
         ` : ''}
       </div>
       <p class="lq-card-desc">${card.desc}</p>
-      ${statusClass === 'card-incorrect' ? '<span class="status-indicator err">❌ ખોટો ક્રમ</span>' : ''}
-      ${statusClass === 'card-correct' ? '<span class="status-indicator ok">✅ સાચો ક્રમ</span>' : ''}
+      ${statusClass.includes('card-incorrect') ? '<span class="status-indicator err">❌ ખોટો ક્રમ</span>' : ''}
+      ${statusClass.includes('card-correct') ? '<span class="status-indicator ok">✅ સાચો ક્રમ</span>' : ''}
     `;
 
     if (interactive) {
@@ -342,23 +307,22 @@ function renderLongQAnswerCards(interactive = false) {
   });
 }
 
-// Mobile Touch Shift / Up-Down Button Swap
+// Mobile Touch Up/Down Button Swap
 function moveLongQCard(index, delta) {
   const targetIndex = index + delta;
   if (targetIndex < 0 || targetIndex >= longQState.userOrderedCards.length) return;
 
-  // Swap elements
   const temp = longQState.userOrderedCards[index];
   longQState.userOrderedCards[index] = longQState.userOrderedCards[targetIndex];
   longQState.userOrderedCards[targetIndex] = temp;
 
-  // Clear previous inline verification errors on manual move
+  // Clear previous verification markers on user move
   longQState.verificationResults = [];
 
   renderLongQAnswerCards(true);
 }
 
-// HTML5 Drag & Drop Support for desktop/tablet
+// Drag and Drop Support
 let draggedCardIndex = null;
 function setupCardDragEvents(cardEl, index) {
   cardEl.draggable = true;
@@ -389,7 +353,6 @@ function setupCardDragEvents(cardEl, index) {
     cardEl.classList.remove('drag-over');
     if (draggedCardIndex === null || draggedCardIndex === index) return;
 
-    // Move item in array
     const movedItem = longQState.userOrderedCards.splice(draggedCardIndex, 1)[0];
     longQState.userOrderedCards.splice(index, 0, movedItem);
 
@@ -398,7 +361,7 @@ function setupCardDragEvents(cardEl, index) {
   };
 }
 
-// 6. Step 3: Final Card Order Verification ("ચકાસણી કરો")
+// 5. Final Order Verification ("ચકાસણી કરો") & Interactive Narration Trigger
 function verifyLongQCardOrder() {
   const qData = longQuestionsData[longQState.currentIndex];
   const originalItems = qData.items;
@@ -419,26 +382,111 @@ function verifyLongQCardOrder() {
 
   if (is100Percent) {
     // 100% SUCCESS!
-    longQState.step = 3;
+    longQState.isSolving = false;
+
     updateStepProgressUI(3);
 
     banner.className = 'feedback-banner success-banner glass';
-    banner.innerText = '🏆 ૧૦૦% સાચો જવાબ! તમે આ લાંબા પ્રશ્નના મુદ્દાઓ અને સૂત્ર સફળતાપૂર્વક યાદ રાખી લીધા!';
+    banner.innerText = '🏆 ૧૦૦% સાચો જવાબ! હવે દરેક મુદ્દો વાર્તા રૂપે હાઈલાઈટ થઈને ઓડિયોમાં સંભળાશે:';
     banner.classList.remove('hidden');
 
+    // Reveal Listen Button again and hide Submit button
+    document.getElementById('btn-lq-speak').classList.remove('hidden');
     document.getElementById('btn-lq-submit-cards').classList.add('hidden');
 
-    // Trigger celebratory audio speech
-    speakText(`અદ્ભુત! ૧૦૦% સાચો જવાબ. તમે ${qData.title} ના બધા મુદ્દાઓ સાચા ક્રમમાં ગોઠવી દીધા છે!`);
+    // Start Interactive Story Narration with synchronized card glows
+    playInteractiveStoryNarration(qData);
   } else {
-    // Partial Error - highlight wrong positions without resetting everything
+    // Partial Errors - Highlight misplaced cards in red without resetting everything
     banner.className = 'feedback-banner error-banner glass';
     banner.innerText = `⚠️ ${originalItems.length} માંથી ${correctCount} મુદ્દા સાચા ક્રમમાં છે. લાલ રંગના કાર્ડ્સનો ક્રમ ▲ અથવા ▼ દબાવીને બદલો અને ફરી "ચકાસણી કરો" દબાવો.`;
     banner.classList.remove('hidden');
   }
 }
 
-// 7. Update Step Progress Indicator Bar
+// 6. Interactive Audio-Visual Story Narration Engine
+function playInteractiveStoryNarration(qData) {
+  stopSpeech();
+
+  if (state.isMuted || !state.speechSynth) return;
+
+  const items = qData.items;
+  let currentItemIdx = 0;
+
+  function speakNextItem() {
+    if (currentItemIdx >= items.length) {
+      // Narration finished
+      longQState.narratingCardIndex = -1;
+      renderLongQAnswerCards(false);
+      return;
+    }
+
+    // Set active narrating card index
+    longQState.narratingCardIndex = currentItemIdx;
+    renderLongQAnswerCards(false);
+
+    // Auto-scroll narrating card into view
+    const cardEl = document.getElementById(`lq-card-item-${currentItemIdx}`);
+    if (cardEl) {
+      cardEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    const item = items[currentItemIdx];
+    const textToSpeak = `${item.title}. ${item.desc}`;
+
+    state.speechUtterance = new SpeechSynthesisUtterance(textToSpeak);
+    if (state.selectedVoice) {
+      state.speechUtterance.voice = state.selectedVoice;
+    }
+    state.speechUtterance.lang = 'gu-IN';
+    state.speechUtterance.rate = state.speechRate;
+
+    // Show subtitles bar
+    const subtitlesBar = document.getElementById('subtitles-container');
+    const subtitlesText = document.getElementById('subtitles-text');
+    subtitlesBar.classList.remove('hidden');
+    subtitlesText.innerText = `${item.title}: ${item.desc}`;
+
+    state.speechUtterance.onend = () => {
+      currentItemIdx++;
+      // Small pause between cards (400ms)
+      setTimeout(speakNextItem, 400);
+    };
+
+    state.speechUtterance.onerror = () => {
+      currentItemIdx++;
+      setTimeout(speakNextItem, 200);
+    };
+
+    state.speechSynth.speak(state.speechUtterance);
+  }
+
+  // Start with Question Header intro speech first
+  state.speechUtterance = new SpeechSynthesisUtterance(`${qData.title}. ${qData.mnemonicDesc}`);
+  if (state.selectedVoice) state.speechUtterance.voice = state.selectedVoice;
+  state.speechUtterance.lang = 'gu-IN';
+  state.speechUtterance.rate = state.speechRate;
+
+  state.speechUtterance.onend = () => {
+    speakNextItem();
+  };
+
+  state.speechUtterance.onerror = () => {
+    speakNextItem();
+  };
+
+  state.speechSynth.speak(state.speechUtterance);
+}
+
+// 7. Manual Speak Button Click (Uses Interactive Story mode if 100% verified, else standard summary)
+function speakCurrentLongQuestion() {
+  const qData = longQuestionsData[longQState.currentIndex];
+  if (qData) {
+    playInteractiveStoryNarration(qData);
+  }
+}
+
+// 8. Step Progress UI Bar
 function updateStepProgressUI(stepNum) {
   const s1 = document.getElementById('lq-step-1');
   const s2 = document.getElementById('lq-step-2');
@@ -449,12 +497,4 @@ function updateStepProgressUI(stepNum) {
   s1.className = `lq-step ${stepNum >= 1 ? 'active' : ''} ${stepNum > 1 ? 'completed' : ''}`;
   s2.className = `lq-step ${stepNum >= 2 ? 'active' : ''} ${stepNum > 2 ? 'completed' : ''}`;
   s3.className = `lq-step ${stepNum >= 3 ? 'active completed' : ''}`;
-}
-
-// 8. Speak Current Long Question Narration
-function speakCurrentLongQuestion() {
-  const qData = longQuestionsData[longQState.currentIndex];
-  if (qData && qData.speechText) {
-    speakText(qData.speechText);
-  }
 }
