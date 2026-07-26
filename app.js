@@ -301,15 +301,51 @@ function setupVoiceSynthesis() {
   };
 }
 
-document.getElementById('btn-speak-node').onclick = () => {
+// Global TTS button state tracking
+state.activeSpeakBtn = null;
+
+function setButtonSpeakingState(btn, isSpeaking) {
+  if (!btn) return;
+  if (isSpeaking) {
+    if (!btn.dataset.origHtml) {
+      btn.dataset.origHtml = btn.innerHTML;
+    }
+    btn.innerHTML = '⏹️ અટકાવો';
+    btn.classList.add('btn-speaking');
+    state.activeSpeakBtn = btn;
+  } else {
+    if (btn.dataset.origHtml) {
+      btn.innerHTML = btn.dataset.origHtml;
+      delete btn.dataset.origHtml;
+    }
+    btn.classList.remove('btn-speaking');
+    if (state.activeSpeakBtn === btn) {
+      state.activeSpeakBtn = null;
+    }
+  }
+}
+
+document.getElementById('btn-speak-node').onclick = function() {
   if (currentActiveNode) {
-    speakText(currentActiveNode.voiceText);
+    toggleSpeech(currentActiveNode.voiceText, this);
   }
 };
 
-function speakText(text) {
+function toggleSpeech(text, btnElement) {
+  if (state.speechSynth && state.speechSynth.speaking) {
+    stopSpeech();
+    return;
+  }
+  speakText(text, btnElement);
+}
+
+function speakText(text, btnElement = null) {
   if (state.isMuted || !state.speechSynth) return;
   stopSpeech();
+
+  if (btnElement) {
+    setButtonSpeakingState(btnElement, true);
+  }
 
   state.currentSpokenText = text;
   state.speechUtterance = new SpeechSynthesisUtterance(text);
@@ -366,11 +402,17 @@ function speakText(text) {
   state.speechUtterance.onend = () => {
     if (fallbackInterval) clearInterval(fallbackInterval);
     setTimeout(() => subtitlesBar.classList.add('hidden'), 1000);
+    if (btnElement) {
+      setButtonSpeakingState(btnElement, false);
+    }
   };
 
   state.speechUtterance.onerror = () => {
     if (fallbackInterval) clearInterval(fallbackInterval);
     subtitlesBar.classList.add('hidden');
+    if (btnElement) {
+      setButtonSpeakingState(btnElement, false);
+    }
   };
 
   state.speechSynth.speak(state.speechUtterance);
@@ -379,6 +421,12 @@ function speakText(text) {
 function stopSpeech() {
   if (state.speechSynth && state.speechSynth.speaking) {
     state.speechSynth.cancel();
+  }
+  document.querySelectorAll('.btn-speaking').forEach(btn => {
+    setButtonSpeakingState(btn, false);
+  });
+  if (state.activeSpeakBtn) {
+    setButtonSpeakingState(state.activeSpeakBtn, false);
   }
 }
 

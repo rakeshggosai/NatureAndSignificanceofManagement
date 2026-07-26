@@ -166,7 +166,7 @@ function renderLongQuestionSelector() {
   };
 }
 
-// 2. Load Specific Long Question (Initial Study Mode)
+// 2. Load Specific Long Question (Initial Study Mode & Full State Reset)
 function loadLongQuestion(idx) {
   stopSpeech();
 
@@ -183,7 +183,10 @@ function loadLongQuestion(idx) {
   // Header Details
   document.getElementById('lq-topic-badge').innerText = qData.topicNo;
   document.getElementById('lq-question-title').innerText = qData.title;
-  document.getElementById('lq-mnemonic-hint').innerText = qData.mnemonicDesc;
+
+  const mnemonicHint = document.getElementById('lq-mnemonic-hint');
+  mnemonicHint.innerText = qData.mnemonicDesc;
+  mnemonicHint.classList.remove('hidden'); // Show mnemonic in study mode
 
   // Copy initial ordered items for Study Mode
   longQState.userOrderedCards = [...qData.items];
@@ -194,11 +197,14 @@ function loadLongQuestion(idx) {
   // Render Answer Cards in original study order
   renderLongQAnswerCards(false);
 
-  // Control Buttons State for Study Mode
+  // Control Buttons & Banner State for Study Mode Reset
   document.getElementById('btn-lq-speak').classList.remove('hidden');
   document.getElementById('btn-lq-start-test').classList.remove('hidden');
   document.getElementById('btn-lq-submit-cards').classList.add('hidden');
-  document.getElementById('lq-feedback-banner').classList.add('hidden');
+  
+  const banner = document.getElementById('lq-feedback-banner');
+  banner.classList.add('hidden');
+  banner.className = 'feedback-banner hidden';
 }
 
 // Next / Previous Navigation
@@ -217,7 +223,7 @@ function startLongQMnemonicTest() {
     "૧. પ્રશ્નના તમામ મુદ્દાઓ (Cards) આડા-અવળા (Shuffled) કરી દેવાયા છે.",
     "૨. કાર્ડ્સને ▲ / ▼ બટન અથવા ડ્રેગ કરીને સાચા ક્રમમાં ગોઠવો.",
     "૩. ક્રમ ગોઠવાઈ જાય એટલે 'ચકાસણી કરો' (Submit) બટન દબાવો.",
-    "૪. ૧૦૦% સાચો ક્રમ થતાં જ કમનીય ઓડિયો વાચન સાથે દરેક કાર્ડ લાઈવ હાઈલાઈટ થાશે!"
+    "૪. ૧૦૦% સાચો ક્રમ થતાં જ ઓડિયો વાચન સાથે દરેક કાર્ડ લાઈવ હાઈલાઈટ થશે!"
   ];
 
   showInstructionModal(
@@ -230,7 +236,8 @@ function startLongQMnemonicTest() {
 
       const qData = longQuestionsData[longQState.currentIndex];
 
-      // Hide Listen button while solving!
+      // HIDE Mnemonic Hint and Listen button while solving!
+      document.getElementById('lq-mnemonic-hint').classList.add('hidden');
       document.getElementById('btn-lq-speak').classList.add('hidden');
       document.getElementById('btn-lq-start-test').classList.add('hidden');
       document.getElementById('btn-lq-submit-cards').classList.remove('hidden');
@@ -253,7 +260,7 @@ function startLongQMnemonicTest() {
   );
 }
 
-// 4. Render Answer Cards List (with Touch Up/Down Reorder, Drag Drop & Real-time Narration Highlight)
+// 4. Render Compact Answer Cards List (No description text for smaller card size)
 function renderLongQAnswerCards(interactive = false) {
   const container = document.getElementById('lq-cards-container');
   if (!container) return;
@@ -279,6 +286,7 @@ function renderLongQAnswerCards(interactive = false) {
     cardEl.id = `lq-card-item-${index}`;
     cardEl.dataset.index = index;
 
+    // Compact layout: Only Key Badge, Icon, Title, Action Arrows, Status Indicator (NO description text)
     cardEl.innerHTML = `
       <div class="lq-card-header">
         <div class="lq-card-badge" style="background: ${card.color}25; border-color: ${card.color}; color: ${card.color};">
@@ -294,7 +302,6 @@ function renderLongQAnswerCards(interactive = false) {
           </div>
         ` : ''}
       </div>
-      <p class="lq-card-desc">${card.desc}</p>
       ${statusClass.includes('card-incorrect') ? '<span class="status-indicator err">❌ ખોટો ક્રમ</span>' : ''}
       ${statusClass.includes('card-correct') ? '<span class="status-indicator ok">✅ સાચો ક્રમ</span>' : ''}
     `;
@@ -410,6 +417,9 @@ function playInteractiveStoryNarration(qData) {
 
   if (state.isMuted || !state.speechSynth) return;
 
+  const btn = document.getElementById('btn-lq-speak');
+  if (btn) setButtonSpeakingState(btn, true);
+
   const items = qData.items;
   let currentItemIdx = 0;
 
@@ -418,6 +428,7 @@ function playInteractiveStoryNarration(qData) {
       // Narration finished
       longQState.narratingCardIndex = -1;
       renderLongQAnswerCards(false);
+      if (btn) setButtonSpeakingState(btn, false);
       return;
     }
 
@@ -478,8 +489,17 @@ function playInteractiveStoryNarration(qData) {
   state.speechSynth.speak(state.speechUtterance);
 }
 
-// 7. Manual Speak Button Click (Uses Interactive Story mode if 100% verified, else standard summary)
+// 7. Manual Speak Button Click Toggle
 function speakCurrentLongQuestion() {
+  const btn = document.getElementById('btn-lq-speak');
+  if (state.speechSynth && state.speechSynth.speaking) {
+    stopSpeech();
+    longQState.narratingCardIndex = -1;
+    renderLongQAnswerCards(false);
+    if (btn) setButtonSpeakingState(btn, false);
+    return;
+  }
+
   const qData = longQuestionsData[longQState.currentIndex];
   if (qData) {
     playInteractiveStoryNarration(qData);

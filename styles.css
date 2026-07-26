@@ -1275,16 +1275,34 @@ h4 { font-size: 16px; }
 .lq-nav-bar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 10px 12px;
   margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.lq-nav-bar .btn {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .lq-select {
   flex: 1;
+  min-width: 0;
+  width: 100%;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+}
+
+/* Global Speaker Active Button State */
+.btn-speaking {
+  border-color: var(--neon-pink) !important;
+  color: var(--neon-pink) !important;
+  background: rgba(247, 121, 125, 0.18) !important;
+  box-shadow: 0 0 12px rgba(247, 121, 125, 0.4) !important;
 }
 
 .lq-workspace {
@@ -1442,10 +1460,10 @@ h4 { font-size: 16px; }
 }
 
 .lq-card {
-  padding: 16px;
+  padding: 10px 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   transition: all 0.25s ease;
   position: relative;
 }
