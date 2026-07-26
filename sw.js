@@ -1,4 +1,4 @@
-const CACHE_NAME = 'sanchalan-sathi-cache-v3';
+const CACHE_NAME = 'sanchalan-sathi-cache-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -6,6 +6,7 @@ const ASSETS_TO_CACHE = [
   './app.js',
   './games.js',
   './assessment.js',
+  './long_questions.js',
   './manifest.json',
   './icons/icon-192.png',
   './icons/icon-512.png'

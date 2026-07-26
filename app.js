@@ -47,6 +47,11 @@ function switchView(viewId) {
   if (viewId !== 'view-assessment') {
     resetAssessmentState();
   }
+
+  // Initialize Long Questions module if switching to view-long-questions
+  if (viewId === 'view-long-questions' && typeof initLongQuestionsModule === 'function') {
+    initLongQuestionsModule();
+  }
 }
 
 // 2. Reusable Phase/Game Instruction Popup Modal

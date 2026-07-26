@@ -154,6 +154,14 @@
             </div>
             <span class="arrow">➔</span>
           </div>
+
+          <div class="menu-item glass menu-highlight-item" onclick="switchView('view-long-questions')">
+            <div class="menu-text">
+              <h5 class="neon-text-gold">૪. મોટા પ્રશ્નો અને સૂત્રો (Long Questions Mnemonics)</h5>
+              <p>બોર્ડ પરીક્ષાના મોટા પ્રશ્નોના મુદ્દાઓ સૂત્રો (Mnemonics) અને Visual Cards દ્વારા યાદ રાખો!</p>
+            </div>
+            <span class="arrow gold-arrow">➔</span>
+          </div>
         </div>
       </div>
     </section>
@@ -364,6 +372,71 @@
       </div>
     </section>
 
+    <!-- View 5: Long-Answer Questions & Mnemonics (મોટા પ્રશ્નો અને સૂત્રો) -->
+    <section id="view-long-questions" class="app-view">
+      <div class="view-header">
+        <h2 class="neon-text-gold">મોટા પ્રશ્નો અને સૂત્રો (Mnemonics)</h2>
+        <p>સૂત્ર યાદ રાખીને તેના આધારે તમામ મુદ્દાઓ સાચા ક્રમમાં ગોઠવો</p>
+      </div>
+
+      <!-- Question Selector Navigation Bar -->
+      <div class="lq-nav-bar glass">
+        <button class="btn btn-secondary btn-sm" onclick="navLongQuestion(-1)">◀ અગાઉનો</button>
+        <select id="lq-select-question" class="glass-input lq-select"></select>
+        <button class="btn btn-secondary btn-sm" onclick="navLongQuestion(1)">આગળનો ▶</button>
+      </div>
+
+      <!-- Main Long Question Workspace Card -->
+      <div class="lq-workspace glass">
+        
+        <!-- Step Progress Indicator -->
+        <div class="lq-steps-bar">
+          <div id="lq-step-1" class="lq-step active">
+            <span class="step-num">૧</span>
+            <span class="step-label">સૂત્ર પાકું કરો</span>
+          </div>
+          <div id="lq-step-2" class="lq-step">
+            <span class="step-num">૨</span>
+            <span class="step-label">કાર્ડ્સ ગોઠવો</span>
+          </div>
+          <div id="lq-step-3" class="lq-step">
+            <span class="step-num">૩</span>
+            <span class="step-label">૧૦૦% ચકાસણી</span>
+          </div>
+        </div>
+
+        <!-- Question Header & Badge -->
+        <div class="lq-header-box">
+          <span id="lq-topic-badge" class="badge">વિભાગ ૧.૨</span>
+          <h3 id="lq-question-title" class="lq-q-title">સંચાલનનું સ્વરૂપ / લાક્ષણિકતાઓ</h3>
+          <p id="lq-mnemonic-hint" class="lq-m-hint">સૂત્ર: સ હે જૂ સ મા નિ વિ</p>
+        </div>
+
+        <!-- Interactive Mnemonic Input Field -->
+        <div class="lq-mnemonic-box glass">
+          <label for="lq-mnemonic-input">સૂત્ર (Mnemonic) ઈનપુટ:</label>
+          <input type="text" id="lq-mnemonic-input" class="glass-input mnemonic-field" placeholder="અહીં સૂત્ર ટાઇપ કરો..." autocomplete="off">
+        </div>
+
+        <!-- Dynamic Feedback Banner -->
+        <div id="lq-feedback-banner" class="feedback-banner hidden"></div>
+
+        <!-- Action Control Buttons -->
+        <div class="lq-actions-bar">
+          <button id="btn-lq-speak" class="btn btn-neon btn-sm" onclick="speakCurrentLongQuestion()">🔊 સાંભળો</button>
+          <button id="btn-lq-start-test" class="btn btn-primary" onclick="startLongQMnemonicTest()">🧠 યાદશક્તિ ચકાસો (Solve)</button>
+          <button id="btn-lq-verify-mnemonic" class="btn btn-primary hidden" onclick="verifyLongQMnemonic()">✅ સૂત્ર ચકાસો (Verify)</button>
+          <button id="btn-lq-submit-cards" class="btn btn-primary hidden" onclick="verifyLongQCardOrder()">🎯 ચકાસણી કરો (Submit)</button>
+        </div>
+
+        <!-- Answer Item Cards Container -->
+        <div id="lq-cards-container" class="lq-cards-list">
+          <!-- Populated via long_questions.js -->
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- Sticky Bottom Navigation Bar -->
@@ -390,5 +463,6 @@
   <script src="app.js"></script>
   <script src="games.js"></script>
   <script src="assessment.js"></script>
+  <script src="long_questions.js"></script>
 </body>
 </html>
